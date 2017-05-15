@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">NewsDemo</string>
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Love your Live</string>
+    <string name="slide_2_title">You Can</string>
+    <string name="slide_3_title">了解广交趣闻</string>
+    <string name="slide_4_title">知晓天下局势</string>
+    <string name="slide_5_title">发现怀集帅哥</string>
+
+    <string name="play_again">play again</string>
+
+</resources>
