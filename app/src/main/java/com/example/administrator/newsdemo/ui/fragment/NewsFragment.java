@@ -153,7 +153,7 @@ public class NewsFragment extends Fragment{
 
 
     private void initRecyclerView() {
-        mNewsAdapter=new NewsAdapter(mDataBeanList);
+        mNewsAdapter=new NewsAdapter(mDataBeanList,getContext());
         LinearLayoutManager manager=new LinearLayoutManager(getContext());
         recycler_content.setLayoutManager(manager);
         recycler_content.setAdapter(mNewsAdapter);

@@ -1,5 +1,7 @@
 package com.example.administrator.newsdemo.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.administrator.newsdemo.R;
 import com.example.administrator.newsdemo.model.NewData;
+import com.example.administrator.newsdemo.ui.fragment.ShowNewsActivity;
 
 import java.util.List;
 
@@ -18,9 +21,11 @@ import java.util.List;
 public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder>{
     //数据源
     private List<NewData.ResultBean.DataBean> mDataBeanList;
+    private Context mContext;
 
-    public NewsAdapter(List<NewData.ResultBean.DataBean> mDataBeanList){
+    public NewsAdapter(List<NewData.ResultBean.DataBean> mDataBeanList,Context context){
         this.mDataBeanList=mDataBeanList;
+        mContext=context;
     }
 
 
@@ -34,7 +39,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder>{
                 int position=viewHolder.getAdapterPosition();
                 NewData.ResultBean.DataBean data=mDataBeanList.get(position);
                 String url=data.getUrl();
-
+                Intent intent=new Intent();
+                intent.setClass(mContext, ShowNewsActivity.class);
+                intent.putExtra("url",url);
+                mContext.startActivity(intent);
             }
         });
         return viewHolder;
