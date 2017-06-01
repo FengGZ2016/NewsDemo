@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<group android:checkableBehavior="single">
+    <item
+        android:id="@+id/item_myfile"
+        android:title="我的资料"
+        android:icon="@drawable/ziliao"
+        />
+    <item
+        android:id="@+id/item_mycollect"
+        android:title="我的收藏"
+        android:icon="@drawable/shoucang"
+        />
+    <item
+        android:id="@+id/item_mycomment"
+        android:title="我的评论"
+        android:icon="@drawable/pinglun"
+        />
+    <item
+        android:id="@+id/item_myintegral"
+        android:title="我的积分"
+        android:icon="@drawable/jifen"
+        />
+    <item
+        android:id="@+id/item_setting"
+        android:title="设置"
+        android:icon="@drawable/setting"
+        />
+</group>
+</menu>

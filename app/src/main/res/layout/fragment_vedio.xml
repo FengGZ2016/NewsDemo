@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="微信精选"
+       android:gravity="center"
+        android:textColor="@color/bg_screen1"
+        android:textSize="20sp"
+        />
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swiperefresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="9">
 <android.support.v7.widget.RecyclerView
-    android:id="@+id/recycler_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/weixin_recycler_view"
+    >
 
 </android.support.v7.widget.RecyclerView>
     </android.support.v4.widget.SwipeRefreshLayout>

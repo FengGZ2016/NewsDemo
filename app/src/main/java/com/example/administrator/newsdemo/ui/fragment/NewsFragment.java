@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -31,6 +32,7 @@ import okhttp3.Response;
  */
 
 public class NewsFragment extends Fragment{
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView recycler_content;
     private NewsAdapter mNewsAdapter;
     private List<NewData.ResultBean.DataBean> mDataBeanList=new ArrayList<>();
@@ -115,7 +117,7 @@ public class NewsFragment extends Fragment{
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
+               // mSwipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
@@ -135,6 +137,7 @@ public class NewsFragment extends Fragment{
                 if (msg.what==1001){
                     //数据发生变化
                     mNewsAdapter.setChang(mDataBeanList);
+                    mSwipeRefreshLayout.setRefreshing(false);
                 }
                 return false;
             }
@@ -146,6 +149,14 @@ public class NewsFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_news, container, false);
         recycler_content= (RecyclerView) view.findViewById(R.id.recycler_content);
+        mSwipeRefreshLayout= (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh_layout);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getHttpData();
+            }
+        });
         //初始化RECYCLERVIEW
         initRecyclerView();
         return view;

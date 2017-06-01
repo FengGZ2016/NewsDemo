@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs xmlns:android="http://schemas.android.com/apk/res/android">
+    <tab
+        id="@+id/tab_top"
+        icon="@mipmap/top"
+        title="头条"/>
+    <tab
+        id="@+id/tab_vidio"
+        icon="@mipmap/vidio"
+        title="视频"/>
+    <tab
+        id="@+id/tab_me"
+        icon="@mipmap/me"
+        title="我的"/>
+    <!--barColorWhenSelected="@color/colorAccent"-->
+
+</tabs>

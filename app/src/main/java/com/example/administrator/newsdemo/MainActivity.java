@@ -1,55 +1,73 @@
 package com.example.administrator.newsdemo;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
+import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
-import com.example.administrator.newsdemo.ui.fragment.NewsFragment;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.administrator.newsdemo.ui.fragment.FragmentFactory;
+import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.OnTabSelectListener;
 
 public class MainActivity extends AppCompatActivity {
-    private TabLayout mTabLayout;
-    private ViewPager mViewPager;
-    private List<String> titleList;
-    private List<Fragment> contentList;
-    private ContentPagerAdapter contentAdapter;
-
+//    private TabLayout mTabLayout;
+//    private ViewPager mViewPager;
+//    private List<String> titleList;
+//    private List<Fragment> contentList;
+//    private ContentPagerAdapter contentAdapter;
+    private FrameLayout mFrameLayout;
+    private BottomBar mBottomBar;
+    private FragmentManager mFragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toobar= (Toolbar) findViewById(R.id.tb_toolbar);
+       Toolbar toobar= (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toobar);
-        initContent();
-        initView();
-        initTabLayout();
+        init();
+//        initContent();
+//        initView();
+//        initTabLayout();
     }
 
-    private void initTabLayout() {
+    private void init() {
+        mFrameLayout= (FrameLayout) findViewById(R.id.frame_layout);
+        mBottomBar= (BottomBar) findViewById(R.id.bottomBar);
+        mFragmentManager=getSupportFragmentManager();
+        mBottomBar.setOnTabSelectListener(mOnTabSelectListener);
+    }
+
+    //创建BottomBar监听器
+    private OnTabSelectListener mOnTabSelectListener=new OnTabSelectListener() {
+        @Override
+        public void onTabSelected(@IdRes int tabId) {
+            //开始事务
+           FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frame_layout, FragmentFactory.getInstance().getFragment(tabId));
+            //提交事务
+            fragmentTransaction.commit();
+        }
+    };
+
+    /*private void initTabLayout() {
         mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         mTabLayout.setTabTextColors(ContextCompat.getColor(this,R.color.colorAccent), ContextCompat.getColor(this, R.color.dot_dark_screen4));
         mTabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.dot_dark_screen4));
         ViewCompat.setElevation(mTabLayout, 10);
         mTabLayout.setupWithViewPager(mViewPager);
-    }
+    }*/
 
 
     /**
      * 初始化数据源，标题和内容
      * */
-    private void initContent() {
+  /*  private void initContent() {
         //标题
         titleList=new ArrayList<>();
         titleList.add("头条");
@@ -125,15 +143,15 @@ public class MainActivity extends AppCompatActivity {
         contentList.add(fj);
         contentList.add(fk);
 
-    }
+    }*/
 
-    private void initView() {
+   /* private void initView() {
         mTabLayout= (TabLayout) findViewById(R.id.tl_tab);
         mViewPager= (ViewPager) findViewById(R.id.vp_content);
         contentAdapter = new ContentPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(contentAdapter);
 
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -145,19 +163,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.tab_add:
-//                titleList.add("Tab " + titleList.size());
-//                contentList.add(NewsFragment.newInstance(titleList.get(titleList.size()-1)));
-//                contentAdapter.notifyDataSetChanged();
-//                mTabLayout.setupWithViewPager(mViewPager);
-                return true;
+          // case R.id.tab_add:
+
+            //    return true;
 
             case R.id.tab_mode_fixed:
-                mTabLayout.setTabMode(TabLayout.MODE_FIXED);
+               // mTabLayout.setTabMode(TabLayout.MODE_FIXED);
                 return true;
 
             case R.id.tab_mode_scrollable:
-                mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+              //  mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -168,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      *适配器
      * */
-    class ContentPagerAdapter extends FragmentPagerAdapter {
+  /*  class ContentPagerAdapter extends FragmentPagerAdapter {
 
 
         public ContentPagerAdapter(FragmentManager fm) {
@@ -189,5 +204,5 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return titleList.get(position);
         }
-    }
+    }*/
 }
