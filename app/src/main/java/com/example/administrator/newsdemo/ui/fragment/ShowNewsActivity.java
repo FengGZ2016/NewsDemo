@@ -7,6 +7,8 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.example.administrator.newsdemo.R;
+import com.like.LikeButton;
+import com.like.OnLikeListener;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
@@ -14,6 +16,7 @@ import com.tencent.smtt.sdk.WebViewClient;
 public class ShowNewsActivity extends AppCompatActivity {
     private WebView mWebView;
     private String url;
+    private LikeButton mLikeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +35,20 @@ public class ShowNewsActivity extends AppCompatActivity {
 
 
     private void initView() {
-        mWebView= (WebView) findViewById(R.id.webview);
+        mLikeButton= (LikeButton) findViewById(R.id.star_button);
+        mLikeButton.setOnLikeListener(new OnLikeListener() {
+            @Override
+            public void liked(LikeButton likeButton) {
+                //收藏
+            }
+
+            @Override
+            public void unLiked(LikeButton likeButton) {
+                //取消收藏
+            }
+        });
+
+                mWebView = (WebView) findViewById(R.id.webview);
         //设置浏览器的属性，让webview支持javascript脚本
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.loadUrl(url);
@@ -74,4 +90,6 @@ public class ShowNewsActivity extends AppCompatActivity {
 
         return super.onKeyDown(keyCode, event);
     }
+
+
 }

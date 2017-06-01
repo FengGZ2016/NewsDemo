@@ -34,6 +34,7 @@ dependencies {
     compile files('libs/tbs_sdk_thirdapp_v3.1.0.1034_43100_sharewithdownload_obfs_20170301_182143.jar')
     /*底部导航栏*/
     compile 'com.roughike:bottom-bar:2.0.2'
-    compile 'com.android.support:design:25.0.1'
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.github.jd-alexander:LikeButton:0.2.1'
+
 }
