@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.administrator.newsdemo.R;
@@ -17,6 +19,7 @@ public class ShowNewsActivity extends AppCompatActivity {
     private WebView mWebView;
     private String url;
     private LikeButton mLikeButton;
+    private ImageView mImageView_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,13 @@ public class ShowNewsActivity extends AppCompatActivity {
                 //取消收藏
             }
         });
-
+        mImageView_back= (ImageView) findViewById(R.id.back);
+        mImageView_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
                 mWebView = (WebView) findViewById(R.id.webview);
         //设置浏览器的属性，让webview支持javascript脚本
         mWebView.getSettings().setJavaScriptEnabled(true);
